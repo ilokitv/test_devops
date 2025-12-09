@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Мониторинг самого приложения
+  - job_name: 'weather-app'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['weather-app:8080']
+        labels:
+          service: 'weather-app'
+          environment: 'production'
+
+  # HTTP check 
+  - job_name: 'weather-app-http-check'
+    metrics_path: '/health'
+    static_configs:
+      - targets: ['weather-app:8080']
+        labels:
+          service: 'weather-app'
+          check_type: 'health'
+
+  # Мониторинг Prometheus
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Мониторинг системных метрик
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+

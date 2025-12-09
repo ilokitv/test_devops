@@ -1,0 +1,22 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+weather-app
+*.test
+*.out
+vendor/
+go.work
+.env
+.env.local
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.log
+.DS_Store
+Thumbs.db
+
